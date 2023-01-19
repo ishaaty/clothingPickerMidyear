@@ -7,11 +7,11 @@ db = MySQLdb.connect(host="sqlclassdb-instance-1.cqjxl5z5vyvr.us-east-2.rds.amaz
 
 mycursor = db.cursor()
 
-mycursor.execute("select color_name from colors where color_name = 'purple'")
+mycursor.execute("select color_name from colors where color_id = 5")
 
 
 myresult = str(mycursor.fetchall())
 
-print(myresult.strip("(").strip("'").strip(',').strip(")"))
-
+print(myresult.strip("(").strip(",").strip(")"))
+print(myresult)
 db.close()
