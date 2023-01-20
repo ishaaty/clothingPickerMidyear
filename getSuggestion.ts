@@ -1,5 +1,4 @@
 const enterBtn = document.querySelector("button") as HTMLButtonElement;
-const testBtn = document.getElementById("test") as HTMLParagraphElement;
 let userAesthetic;
 let userClothingType;
 let userColor;
@@ -12,13 +11,19 @@ function getClothes() {
     userClothingType = getClothingType();
     userColor = getColor();
     userPrice = getPrice();
+    console.log(userAesthetic);
 }
 
 function getAesthetic() {
-    let indieInput = document.getElementById("indie") as HTMLInputElement;
-    if (indieInput.checked == true) {
-        return 
-    }
+    // CURRENTLY READS THROUGH ALL INPUT ELEMENTS, CORRECT THIS
+    let aestheticInput : HTMLInputElement;
+    document.querySelectorAll("input").forEach((styleInput) => {
+        if (styleInput.checked == true) {
+            aestheticInput = styleInput;
+        }
+    });
+    // @ts-ignore
+    return aestheticInput.name;
 }
 
 function getClothingType() {
