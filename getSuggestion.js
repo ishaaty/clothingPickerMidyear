@@ -43,7 +43,7 @@ function getColor() {
         }
     });
     // @ts-ignore
-    return getColor.name;
+    return colorInput.name;
 }
 function getPrice() {
     let priceInput;

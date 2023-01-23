@@ -47,7 +47,7 @@ function getColor() {
         }
     });
     // @ts-ignore
-    return getColor.name;
+    return colorInput.name;
 }
 
 
