@@ -11,7 +11,9 @@ function getClothes() {
     userColor = getColor();
     userPrice = getPrice();
     console.log(userAesthetic);
-    console.log(userClothingType);
+    // console.log(userClothingType);
+    // console.log(userColor);
+    // console.log(userPrice);
 }
 function getAesthetic() {
     let aestheticInput;
