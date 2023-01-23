@@ -38,10 +38,24 @@ function getClothingType() {
 }
 
 function getColor() {
-
+    let colorInput : HTMLInputElement;
+    document.querySelectorAll("input").forEach((styleInput) => {
+        if (styleInput.checked == true && styleInput.id == "q3") {
+            colorInput = styleInput;
+        }
+    });
+    // @ts-ignore
+    return getColor.name;
 }
 
 
 function getPrice() {
-
+    let priceInput : HTMLInputElement;
+    document.querySelectorAll("input").forEach((styleInput) => {
+        if (styleInput.checked == true && styleInput.id == "q4") {
+            priceInput = styleInput;
+        }
+    });
+    // @ts-ignore
+    return priceInput.name;
 }
