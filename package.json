@@ -1,6 +1,27 @@
 {
   "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "morgan": "^1.10.0",
     "mysql": "^2.18.1",
+    "mysql2": "^3.0.1",
     "typescript": "^4.9.4"
-  }
+  },
+  "name": "clothingpickermidyear",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ishaaty/clothingPickerMidyear.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ishaaty/clothingPickerMidyear/issues"
+  },
+  "homepage": "https://github.com/ishaaty/clothingPickerMidyear#readme",
+  "description": ""
 }
