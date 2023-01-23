@@ -1,6 +1,5 @@
 body {
     font-family: 'Dosis';
-    text-align: center;
 }
 
 h1 {
@@ -21,5 +20,9 @@ label {
 
 button {
     margin-top: 20px;
+}
+
+.question, label, button, h2 {
+    margin-left: 700px;
 }
 
