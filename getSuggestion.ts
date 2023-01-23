@@ -12,42 +12,39 @@ function getClothes() {
     userColor = getColor();
     userPrice = getPrice();
     console.log(userAesthetic);
-    // console.log(userClothingType);
-    // console.log(userColor);
-    // console.log(userPrice);
+    console.log(userClothingType);
+    console.log(userColor);
+    console.log(userPrice);
 }
 
 function getAesthetic() {
-    let aestheticInput : HTMLInputElement;
+    let aestheticInput : String[] = [];
     document.querySelectorAll("input").forEach((styleInput) => {
         if (styleInput.checked == true && styleInput.id == "q1") {
-            aestheticInput = styleInput;
+            aestheticInput.push(styleInput.name);
         }
     });
-    // @ts-ignore
-    return aestheticInput.name;
+    return aestheticInput;
 }
 
 function getClothingType() {
-    let clothingInput : HTMLInputElement;
+    let clothingInput : String[] = [];
     document.querySelectorAll("input").forEach((styleInput) => {
         if (styleInput.checked == true && styleInput.id == "q2") {
-            clothingInput = styleInput;
+            clothingInput.push(styleInput.name);
         }
     });
-    // @ts-ignore
-    return clothingInput.name;
+    return clothingInput;
 }
 
 function getColor() {
-    let colorInput : HTMLInputElement;
+    let colorInput : String[] = [];
     document.querySelectorAll("input").forEach((styleInput) => {
         if (styleInput.checked == true && styleInput.id == "q3") {
-            colorInput = styleInput;
+            colorInput.push(styleInput.name);
         }
     });
-    // @ts-ignore
-    return getColor.name;
+    return colorInput;
 }
 
 
