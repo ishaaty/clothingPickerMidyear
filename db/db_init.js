@@ -1,7 +1,21 @@
 const db = require("./db_connection");
 
-stuff = db.execute("select * from colors");
+// stuff = db.execute("select * from colors where color_name = 'purple'");
 
-console.log(stuff);
+// console.log(stuff);
+
+/**** Read the sample items inserted ****/
+
+const read_stuff_table_sql = "SELECT * FROM colors where color_name = 'purple'";
+
+db.execute(read_stuff_table_sql, 
+    (error, results) => {
+        if (error) 
+            throw error;
+
+        console.log("Table 'colors' initialized with:")
+        console.log(results);
+    }
+);
 
 db.end();
