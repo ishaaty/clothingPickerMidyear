@@ -12,13 +12,13 @@ function getClothes() {
     userColor = getColor();
     userPrice = getPrice();
     console.log(userAesthetic);
+    console.log(userClothingType);
 }
 
 function getAesthetic() {
-    // CURRENTLY READS THROUGH ALL INPUT ELEMENTS, CORRECT THIS
     let aestheticInput : HTMLInputElement;
     document.querySelectorAll("input").forEach((styleInput) => {
-        if (styleInput.checked == true) {
+        if (styleInput.checked == true && styleInput.id == "q1") {
             aestheticInput = styleInput;
         }
     });
@@ -27,7 +27,14 @@ function getAesthetic() {
 }
 
 function getClothingType() {
-
+    let clothingInput : HTMLInputElement;
+    document.querySelectorAll("input").forEach((styleInput) => {
+        if (styleInput.checked == true && styleInput.id == "q2") {
+            clothingInput = styleInput;
+        }
+    });
+    // @ts-ignore
+    return clothingInput.name;
 }
 
 function getColor() {
