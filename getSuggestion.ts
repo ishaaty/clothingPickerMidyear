@@ -51,11 +51,11 @@ function getColor() {
 function getPrice() {
     let priceInput : HTMLInputElement;
     document.querySelectorAll("input").forEach((styleInput) => {
-        if (styleInput.checked == true && styleInput.id == "q4") {
+        if (styleInput.checked == true && styleInput.name == "q4") {
             priceInput = styleInput;
         }
     });
     // @ts-ignore
-    return priceInput.name;
+    return priceInput.id;
 }
 
