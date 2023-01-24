@@ -2,7 +2,7 @@ const db = require("./db_connection");
 
 /**** Read the sample items inserted ****/
 
-const read_stuff_table_sql = "SELECT * FROM colors where color_name like 'b%'";
+const read_stuff_table_sql = "SELECT link, img_name, FROM colors where color_name like 'b%'";
 
 db.execute(read_stuff_table_sql, 
     (error, results) => {
