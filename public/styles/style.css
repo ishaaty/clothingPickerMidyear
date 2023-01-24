@@ -1,28 +1,23 @@
+html {
+    background-image: url("../../greenbg.jpg");
+}
 body {
     font-family: 'Dosis';
+    margin: auto;
+    background-color: rgb(237, 252, 251);
+    width: 1000px;
+    font-size: 18px;
+    color: rgb(62, 97, 80);
 }
 
 h1 {
     font-weight: bold;
     text-align: center;
-}
-
-.question {
-    display: block;
-    white-space: pre-line;
-    margin-top: 0px;
-}
-
-label {
-    font-weight: bold;
-    white-space: none;
-}
-
-button {
     margin-top: 20px;
+    padding-top: 15px;
 }
 
-.question, label, button, h2 {
-    justify-content: center;
+h2 {
+    font-style: italic;
 }
 
