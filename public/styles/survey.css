@@ -17,19 +17,6 @@ p {
     margin-bottom: 0px;
 }
 
-button {
-    margin: 20px;
-    background-color: rgb(214, 252, 231);
-    /* border-color: rgb(149, 180, 166); */
-    border-color: rgb(62, 97, 80);
-    border-style:outset;
-    cursor: pointer;
-}
-
-button:hover {
-    border-style:inset;
-}
-
 .question, p, button, h2 {
     justify-content: center;
     margin-left: 40px;
