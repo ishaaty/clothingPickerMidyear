@@ -1,8 +1,11 @@
+// userAesthetic, userClothingType, userColor, userPrice;
+
+
 const db = require("./db_connection");
 
 /**** Read the sample items inserted ****/
 
-const read_stuff_table_sql = "SELECT link, img_name, FROM colors where color_name like 'b%'";
+const read_stuff_table_sql =  "select link, img_name from items_xref as ix, links, imgs, aesthetics, prices, clothing_type as ct, colors";
 
 db.execute(read_stuff_table_sql, 
     (error, results) => {
