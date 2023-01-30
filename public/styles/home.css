@@ -6,8 +6,11 @@ body {
 }
 
 button {
-    height: 50px;
-    width: 100px;
     font-size: 18px;
     font-weight: bold;
+    border-radius: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 }

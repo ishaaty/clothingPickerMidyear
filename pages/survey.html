@@ -8,13 +8,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../public/styles/style.css">
-    <link rel="stylesheet" href="../public/styles/survey.css">
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/survey.css">
 </head>
 <body>
     <h1>Clothing Picker</h1>
     <h2>Survey Questions:</h2>
     <p>What is your aesthetic?</p>
+    <!-- <form method="post"> -->
     <div class="question">
         <input type="checkbox" name="Indie" id="q1">Indie</input>
         <input type="checkbox" name="Cottagecore" id="q1">Cottagecore</input>
@@ -56,8 +57,11 @@
         <input type="radio" name="q4" id="100">$100</input>
         <input type="radio" name="q4" id="150">$150</input>
     </div>
-    <button id="results" onclick="location.href='result.html'">Display Results</button>
+    <button id="results" onclick="location.href='/survey/result' location.tar" target="_blank">Display Results</button>
+    <!-- <button id="results" type="submit">Display Results</button> -->
+    <!-- </form> -->
     <script src="../getSuggestion.js"></script>
-    <script src="../db/db_init.js"></script>
+    <script src="../public/db/db_init.js"></script>
+    <script src="./app.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 html {
-    background-image: url("../../greenbg.jpg");
+    background-image: url("../imgs/greenbg.jpg");
 }
 body {
     font-family: 'Dosis';
@@ -29,6 +29,11 @@ button {
     font-size: 14px;
     color: rgb(62, 97, 80);
     cursor: pointer;
+    border-radius: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
 }
 
 button:hover {

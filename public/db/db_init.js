@@ -1,24 +1,25 @@
 // vars from getSuggestion: userAesthetic, userClothingType, userColor, userPrice;
 
-const db = require("./db_connection");
+const db = require('./db_connection');
 
-let aestheticsQuery = "";
+let aestheticsQuery = "(";
 for (let i = 0; i < userAesthetic.length() - 1; i++){
-    aestheticsQuery += "(aesthetics.aesthetic_name = " + userAesthetic[i] + "or";
+    aestheticsQuery += "aesthetics.aesthetic_name = " + userAesthetic[i] + "or";
 }   
 aestheticsQuery += "aesthetics.aesthetic_name = " + userAesthetic[userAesthetic.length()-1] + ")";
 
+console.log(aestheticsQuery);
 
-let typesQuery = "";
+let typesQuery = "(";
 for (let i = 0; i < userClothingType.length() - 1; i++){
-    typesQuery += "(clothing_type.type_name = " + userClothingType[i] + "or";
+    typesQuery += "clothing_type.type_name = " + userClothingType[i] + "or";
 }   
 typesQuery += "clothing_type.type_name = " + userClothingType[userClothingType.length()-1] + ")";
 
 
-let colorQuery = "";
+let colorQuery = "(";
 for (let i = 0; i < userColor.length() - 1; i++){
-    colorQuery += "(color.color_name = " + userColor[i] + "or";
+    colorQuery += "color.color_name = " + userColor[i] + "or";
 }   
 colorQuery += "color.color_name = " + userColor[userColor.length()-1] + ")";
 
