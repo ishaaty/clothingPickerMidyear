@@ -8,6 +8,7 @@ const bp = require('body-parser');
 const aesthetics = ["Indie", "Cottagecore", "Grunge", "Monochromatic", "Dark-Academia", "Light-Academia"];
 const clothingTypes = ["Tshirt", "LongSleeves", "Hoodie", "Dress", "Jeans", "Sweatpants"];
 const colors = ["Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "Grey", "White", "Black", "Brown"];
+const prices = [10, 20, 30, 50, 100, 150]
 
 // define middleware that logs all incoming requests
 app.use(logger("dev"));
@@ -51,21 +52,36 @@ app.post("/survey/result", (req, res)=>{
             selectedAesthetics.push(aesthetics[i]);
         }
     }
+    console.log(selectedAesthetics);
 
     // Get selected clothing types
     let selectedClothes = [];
     const clothingObj = [req.body.Tshirt, req.body.LongSleeves, req.body.Hoodie, req.body.Dress, req.body.Jeans, req.body.Sweatpants];
     for (let i = 0; i < clothingObj.length; i++) {
         if (clothingObj[i] != undefined) {
-            selectedClothes.push(aesthetics[i]);
+            selectedClothes.push(clothingTypes[i]);
         }
     }
+    console.log(selectedClothes);
 
     // Get selected colors
     let selectedColors = [];
     const colorObj = [req.body.Red, req.body.Orange, req.body.Yellow, req.body.Green, req.body.Blue, req.body.Purple, req.body.Pink, req.body.Grey, req.body.White, req.body.Black, req.body.Brown];
     for (let i = 0; i < colorObj.length; i++) {
-        selectedColors.push(colors[i]);
+        if (colorObj[i] != undefined) {
+            selectedColors.push(colors[i]);
+        }
+    }
+    console.log(selectedColors);
+
+    // Get selected price
+    let selectedPrice = 0;
+    const priceObj = [req.body.ten, req.body.twenty, req.body.thirty, req.body.fifty, req.body.hundred, req.body.hundredFifty];
+    for (let i = 0; i < priceObj.length; i++) {
+        if (){
+            selectedPrice = ;
+            break;
+        }
     }
 
     res.sendFile( __dirname + "/pages/result.html" );
