@@ -6,7 +6,8 @@ const logger = require("morgan");
 const db = require('./public/db/db_connection');
 const bp = require('body-parser');
 const aesthetics = ["Indie", "Cottagecore", "Grunge", "Monochromatic", "Dark-Academia", "Light-Academia"];
-let selectedAesthetics = [];
+const clothingTypes = ["Tshirt", "LongSleeves", "Hoodie", "Dress", "Jeans", "Sweatpants"];
+const colors = ["Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "Grey", "White", "Black", "Brown"];
 
 // define middleware that logs all incoming requests
 app.use(logger("dev"));
@@ -42,15 +43,31 @@ const main_query =  `select link, img_name from items_xref as ix, links, imgs, a
 
 
 app.post("/survey/result", (req, res)=>{
+    // Get selected aesthetics
+    let selectedAesthetics = [];
     const aestheticObj = [req.body.Indie, req.body.Cottagecore, req.body.Monochromatic, req.body.DarkAcademia, req.body.LightAcademia];
-    console.log(req.body.Indie);
-    console.log(req.body.Cottagecore);
     for (let i = 0; i < aestheticObj.length; i++) {
         if (aestheticObj[i] != undefined) {
             selectedAesthetics.push(aesthetics[i]);
         }
     }
-    console.log(selectedAesthetics);
+
+    // Get selected clothing types
+    let selectedClothes = [];
+    const clothingObj = [req.body.Tshirt, req.body.LongSleeves, req.body.Hoodie, req.body.Dress, req.body.Jeans, req.body.Sweatpants];
+    for (let i = 0; i < clothingObj.length; i++) {
+        if (clothingObj[i] != undefined) {
+            selectedClothes.push(aesthetics[i]);
+        }
+    }
+
+    // Get selected colors
+    let selectedColors = [];
+    const colorObj = [req.body.Red, req.body.Orange, req.body.Yellow, req.body.Green, req.body.Blue, req.body.Purple, req.body.Pink, req.body.Grey, req.body.White, req.body.Black, req.body.Brown];
+    for (let i = 0; i < colorObj.length; i++) {
+        selectedColors.push(colors[i]);
+    }
+
     res.sendFile( __dirname + "/pages/result.html" );
 
 });
