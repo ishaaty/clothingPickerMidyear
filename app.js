@@ -38,7 +38,7 @@ const main_query =  `select link, img_name from items_xref as ix, links, imgs, a
                      and (ix.color1_id = colors.color_id or ix.color2_id = colors.color_id or ix.color3_id = colors.color_id) 
                      and ? 
                      and ix.img_id = img.img_id and ix.link_id = links.link_id 
-                     order by img_name";`
+                     order by img_name;`
 
 
 app.post("/survey/result", (req, res)=>{
@@ -52,7 +52,6 @@ app.post("/survey/result", (req, res)=>{
     }
     console.log(selectedAesthetics);
     res.sendFile( __dirname + "/pages/result.html" );
-
 });
 
 
