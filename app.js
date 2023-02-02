@@ -6,6 +6,7 @@ const logger = require("morgan");
 const db = require('./public/db/db_connection');
 const bp = require('body-parser');
 const aesthetics = ["Indie", "Cottagecore", "Grunge"]
+selectedAesthetics = [];
 
 // define middleware that logs all incoming requests
 app.use(logger("dev"));
@@ -43,6 +44,12 @@ const main_query =  `select link, img_name from items_xref as ix, links, imgs, a
 app.post("/survey/result", (req, res)=>{
     console.log(req.body.Indie);
     console.log(req.body.Cottagecore);
+    for (let i = 0; i < aesthetics; i++) {
+        // if (req.body.aesthetics[i]) {
+            selectedAesthetics.push(aesthetics[i]);
+        // }
+    }
+    console.log(selectedAesthetics);
     res.sendFile( __dirname + "/pages/result.html" );
 
 });
