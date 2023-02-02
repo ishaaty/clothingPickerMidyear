@@ -5,9 +5,8 @@ const port = 8080;
 const logger = require("morgan");
 const db = require('./public/db/db_connection');
 const bp = require('body-parser');
-const aesthetics = ["Indie", "Cottagecore", "Grunge", "Monochromatic", "Dark-Academia", "Light-Academia"]
-const stuff = [req.body.Indie, req.body.Cottagecore, req.body.Monochromatic, req.body.Dark-Academia, req.body.Light-Academia]
-
+const aesthetics = ["Indie", "Cottagecore", "Grunge", "Monochromatic", "Dark-Academia", "Light-Academia"];
+let selectedAesthetics = [];
 
 // define middleware that logs all incoming requests
 app.use(logger("dev"));
@@ -43,10 +42,11 @@ const main_query =  `select link, img_name from items_xref as ix, links, imgs, a
 
 
 app.post("/survey/result", (req, res)=>{
+    const aestheticObj = [req.body.Indie, req.body.Cottagecore, req.body.Monochromatic, req.body.DarkAcademia, req.body.LightAcademia];
     console.log(req.body.Indie);
     console.log(req.body.Cottagecore);
-    for (let i = 0; i < aesthetics.length; i++) {
-        if (req.body.aesthetics[i] == 'on') {
+    for (let i = 0; i < aestheticObj.length; i++) {
+        if (aestheticObj[i] != undefined) {
             selectedAesthetics.push(aesthetics[i]);
         }
     }
