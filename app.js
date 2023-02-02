@@ -5,8 +5,7 @@ const port = 8080;
 const logger = require("morgan");
 const db = require('./public/db/db_connection');
 const bp = require('body-parser');
-const aesthetics = ["Indie", "Cottagecore", "Grunge"]
-selectedAesthetics = [];
+const aesthetics = ["Indie", "Cottagecore", "Grunge", "Monochromatic", "Dark-Academia", "Light-Academia"]
 
 // define middleware that logs all incoming requests
 app.use(logger("dev"));
