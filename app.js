@@ -6,6 +6,8 @@ const logger = require("morgan");
 const db = require('./public/db/db_connection');
 const bp = require('body-parser');
 const aesthetics = ["Indie", "Cottagecore", "Grunge", "Monochromatic", "Dark-Academia", "Light-Academia"]
+const stuff = [req.body.Indie, req.body.Cottagecore, req.body.Monochromatic, req.body.Dark-Academia, req.body.Light-Academia]
+
 
 // define middleware that logs all incoming requests
 app.use(logger("dev"));
