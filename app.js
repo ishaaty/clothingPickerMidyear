@@ -78,13 +78,13 @@ app.post("/survey/result", (req, res)=>{
     let selectedPrice = 0;
     const priceObj = [req.body.ten, req.body.twenty, req.body.thirty, req.body.fifty, req.body.hundred, req.body.hundredFifty];
     for (let i = 0; i < priceObj.length; i++) {
-        if (){
-            selectedPrice = ;
-            break;
-        }
+        // if (){
+        //     selectedPrice = ;
+        //     break;
+        // }
     }
 
-    res.sendFile( __dirname + "/pages/result.html" );
+    res.sendFile( __dirname + "/pages/result.ejs" );
 });
 
 
