@@ -97,7 +97,9 @@ app.post("/survey/result", (req, res)=>{
     db.execute(main_query, (error, results) => {
         if (error)
             res.status(500).send(error); //Internal Server Error
-        else {
+        else if (results.length == 0){
+            res.send("Vrielle exception!");
+        } else {
             console.log(results);
             res.send(results);
         }
