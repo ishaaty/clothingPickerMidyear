@@ -8,7 +8,6 @@ const bp = require('body-parser');
 const aesthetics = ["Indie", "Cottagecore", "Grunge", "Monochromatic", "Dark-Academia", "Light-Academia"];
 const clothingTypes = ["Tshirt", "LongSleeves", "Hoodie", "Dress", "Jeans", "Sweatpants"];
 const colors = ["Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "Grey", "White", "Black", "Brown"];
-const prices = [10, 20, 30, 50, 100, 150]
 
 // define middleware that logs all incoming requests
 app.use(logger("dev"));
@@ -22,31 +21,15 @@ app.get( "/", ( req, res ) => {
 } );
 
 // define a route for the stuff inventory page
-const read_color_all_sql = `
-    SELECT 
-        color_id, color_name
-    FROM
-        colors
-`
 
 app.get( "/survey", ( req, res ) => {
     res.sendFile( __dirname + "/pages/survey.html" );
 } );
 
-const main_query =  `select link, img_name from items_xref as ix, links, imgs, aesthetics, prices, clothing_type as ct, colors 
-                    where ix.aesthetic_id = aesthetics.aesthetic_id and ?  
-                     and ix.type_id = ct.type_id and ? 
-                     and ix.price_id = prices.price_id and prices.price_val <= ? 
-                     and (ix.color1_id = colors.color_id or ix.color2_id = colors.color_id or ix.color3_id = colors.color_id) 
-                     and ? 
-                     and ix.img_id = img.img_id and ix.link_id = links.link_id 
-                     order by img_name;`
-
-
 app.post("/survey/result", (req, res)=>{
     // Get selected aesthetics
     let selectedAesthetics = [];
-    const aestheticObj = [req.body.Indie, req.body.Cottagecore, req.body.Monochromatic, req.body.DarkAcademia, req.body.LightAcademia];
+    const aestheticObj = [req.body.Indie, req.body.Cottagecore, req.body.Grunge, req.body.Monochromatic, req.body.DarkAcademia, req.body.LightAcademia];
     for (let i = 0; i < aestheticObj.length; i++) {
         if (aestheticObj[i] != undefined) {
             selectedAesthetics.push(aesthetics[i]);
@@ -62,7 +45,6 @@ app.post("/survey/result", (req, res)=>{
             selectedClothes.push(clothingTypes[i]);
         }
     }
-    console.log(selectedClothes);
 
     // Get selected colors
     let selectedColors = [];
@@ -72,19 +54,55 @@ app.post("/survey/result", (req, res)=>{
             selectedColors.push(colors[i]);
         }
     }
-    console.log(selectedColors);
 
     // Get selected price
-    let selectedPrice = 0;
-    const priceObj = [req.body.ten, req.body.twenty, req.body.thirty, req.body.fifty, req.body.hundred, req.body.hundredFifty];
-    for (let i = 0; i < priceObj.length; i++) {
-        if (){
-            selectedPrice = ;
-            break;
-        }
-    }
+    let selectedPrice = req.body.pricing.substr(1, req.body.pricing.length-1);
+    console.log(selectedPrice)
 
-    res.sendFile( __dirname + "/pages/result.html" );
+
+    // formatting lists for query
+    let aestheticsQuery = "(";
+    for (let i = 0; i < selectedAesthetics.length - 1; i++){
+        aestheticsQuery += "aesthetics.aesthetic_name = " + '"' + selectedAesthetics[i] + '"' + " or ";
+    }   
+    aestheticsQuery += "aesthetics.aesthetic_name = " + '"' + selectedAesthetics[selectedAesthetics.length-1] + '"' + ")";
+    console.log(aestheticsQuery);
+
+
+    let typesQuery = "(";
+    for (let i = 0; i < selectedClothes.length - 1; i++){
+        typesQuery += "ct.type_name = " +  '"' + selectedClothes[i] + '"' + " or ";
+    }   
+    typesQuery += "ct.type_name = " + '"' + selectedClothes[selectedClothes.length-1] + '"' + ")";
+    console.log(typesQuery);
+
+
+    let colorQuery = "(";
+    for (let i = 0; i < selectedColors.length - 1; i++){
+        colorQuery += "colors.color_name = " + '"' + selectedColors[i] + '"' + " or ";
+    }   
+    colorQuery += "colors.color_name = " + '"' + selectedColors[selectedColors.length-1] + '"' + ")";
+    console.log(colorQuery);
+
+    let main_query = `
+                    select img_name, link from items_xref as ix, images, links, colors, aesthetics, clothing_type as ct, prices
+                    where ix.color1_id = colors.color_id and ` + colorQuery 
+                    + ` and ix.aesthetic_id = aesthetics.aesthetic_id and ` + aestheticsQuery 
+                    + ` and ix.type_id = ct.type_id and ` + typesQuery 
+                    + ` and ix.max_price = prices.price_id and prices.price_val <= ` + selectedPrice 
+                    + ` and ix.img_id = images.img_id and ix.link_id = links.link_id
+                    order by img_name
+                    `
+
+    db.execute(main_query, (error, results) => {
+        if (error)
+            res.status(500).send(error); //Internal Server Error
+        else {
+            console.log(results);
+            res.send(results);
+        }
+    });
+
 });
 
 
