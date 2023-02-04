@@ -10,14 +10,11 @@
 <body>
     <h1>Clothing Selector</h1>
     <h2>We suggest</h2>
-    <!--Image-->
-    <label></label>
-    <href></href>
-    <!--Image-->
-    <label></label>
-    <href></href>
-    <!--Image-->
-    <label></label>
-    <href></href>
+    <% for (let i = 0; i < displayItems.length; i++){ %>
+        <a href="<%= displayItems[i].link %>">
+            <img src="/imgs/<%= displayItems[i].img_name%>">
+        </a>
+        <label>$<%= displayItems[i].price_val %></label>
+    <% } %>
 </body>
 </html>

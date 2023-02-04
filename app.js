@@ -9,21 +9,23 @@ const aesthetics = ["Indie", "Cottagecore", "Grunge", "Monochromatic", "Dark-Aca
 const clothingTypes = ["Tshirt", "LongSleeves", "Hoodie", "Dress", "Jeans", "Sweatpants"];
 const colors = ["Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "Grey", "White", "Black", "Brown"];
 
-// define middleware that logs all incoming requests
+// more stuff to set up server
+app.set( "views",  __dirname + "/views");
+app.set( "view engine", "ejs" );
 app.use(logger("dev"));
 app.use(express.static(__dirname + '/public'));
-app.use(bp.json())
-app.use(bp.urlencoded({ extended: true }))
+app.use(bp.json());
+app.use(bp.urlencoded({ extended: true }));
+app.use(express.urlencoded({encoded: false}));
 
 // define a route for the default home page
 app.get( "/", ( req, res ) => {
-    res.sendFile( __dirname + "/pages/index.html" );
+    res.render("index");
 } );
 
-// define a route for the stuff inventory page
-
+// define a route for the survey page
 app.get( "/survey", ( req, res ) => {
-    res.sendFile( __dirname + "/pages/survey.html" );
+    res.render("survey");
 } );
 
 app.post("/survey/result", (req, res)=>{
@@ -35,7 +37,6 @@ app.post("/survey/result", (req, res)=>{
             selectedAesthetics.push(aesthetics[i]);
         }
     }
-    console.log(selectedAesthetics);
 
     // Get selected clothing types
     let selectedClothes = [];
@@ -57,36 +58,33 @@ app.post("/survey/result", (req, res)=>{
 
     // Get selected price
     let selectedPrice = req.body.pricing.substr(1, req.body.pricing.length-1);
-    console.log(selectedPrice)
 
-
-    // formatting lists for query
+    // formatting aesthetic query
     let aestheticsQuery = "(";
     for (let i = 0; i < selectedAesthetics.length - 1; i++){
         aestheticsQuery += "aesthetics.aesthetic_name = " + '"' + selectedAesthetics[i] + '"' + " or ";
     }   
     aestheticsQuery += "aesthetics.aesthetic_name = " + '"' + selectedAesthetics[selectedAesthetics.length-1] + '"' + ")";
-    console.log(aestheticsQuery);
 
-
+    // formatting type query
     let typesQuery = "(";
     for (let i = 0; i < selectedClothes.length - 1; i++){
         typesQuery += "ct.type_name = " +  '"' + selectedClothes[i] + '"' + " or ";
     }   
     typesQuery += "ct.type_name = " + '"' + selectedClothes[selectedClothes.length-1] + '"' + ")";
-    console.log(typesQuery);
 
-
+    // formatting color query
     let colorQuery = "(";
     for (let i = 0; i < selectedColors.length - 1; i++){
         colorQuery += "colors.color_name = " + '"' + selectedColors[i] + '"' + " or ";
     }   
     colorQuery += "colors.color_name = " + '"' + selectedColors[selectedColors.length-1] + '"' + ")";
-    console.log(colorQuery);
 
+    // combing queries into main_query
     let main_query = `
-                    select img_name, link from items_xref as ix, images, links, colors, aesthetics, clothing_type as ct, prices
-                    where ix.color1_id = colors.color_id and ` + colorQuery 
+                    select img_name, link, price_val from items_xref as ix, images, links, colors, aesthetics, clothing_type as ct, prices
+                    where (ix.color1_id = colors.color_id or ix.color2_id = colors.color_id or ix.color3_id = colors.color_id) 
+                    and ` + colorQuery 
                     + ` and ix.aesthetic_id = aesthetics.aesthetic_id and ` + aestheticsQuery 
                     + ` and ix.type_id = ct.type_id and ` + typesQuery 
                     + ` and ix.max_price = prices.price_id and prices.price_val <= ` + selectedPrice 
@@ -94,6 +92,14 @@ app.post("/survey/result", (req, res)=>{
                     order by img_name
                     `
 
+    let vrielle_query = `
+                        select img_name, link, price_val from items_xref as ix, images, links, colors, aesthetics, clothing_type as ct, prices
+                        where where (ix.color1_id = colors.color_id or ix.color2_id = colors.color_id or ix.color3_id = colors.color_id) 
+                        and colors.color_id = "Purple"
+                        order by img_name
+                        `
+
+    // execution of main_query
     db.execute(main_query, (error, results) => {
         if (error)
             res.status(500).send(error); //Internal Server Error
@@ -101,12 +107,11 @@ app.post("/survey/result", (req, res)=>{
             res.send("Vrielle exception!");
         } else {
             console.log(results);
-            res.send(results);
+            res.render("result", {displayItems : results});
         }
     });
 
 });
-
 
 // start the server
 app.listen( port, () => {
