@@ -17,6 +17,18 @@ p {
     margin-bottom: 0px;
 }
 
+#pricing {
+    background-color: rgb(254, 255, 247);
+    border-color: rgb(62, 97, 80);
+    border-style: offset;
+    cursor: pointer;
+    font-family: 'Dosis';
+    font-size: 16px;
+    color: rgb(62, 97, 80);
+    border-radius: 10px;
+    padding: 4px;
+}
+
 .question, p, button, h2 {
     justify-content: center;
     margin-left: 40px;
