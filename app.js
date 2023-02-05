@@ -82,7 +82,7 @@ app.post("/survey/result", (req, res)=>{
 
     // combing queries into main_query
     let main_query = `
-                    select img_name, link, price_val from items_xref as ix, images, links, colors, aesthetics, clothing_type as ct, prices
+                    select distinct img_name, link, price_val from items_xref as ix, images, links, colors, aesthetics, clothing_type as ct, prices
                     where (ix.color1_id = colors.color_id or ix.color2_id = colors.color_id or ix.color3_id = colors.color_id) 
                     and ` + colorQuery 
                     + ` and ix.aesthetic_id = aesthetics.aesthetic_id and ` + aestheticsQuery 
