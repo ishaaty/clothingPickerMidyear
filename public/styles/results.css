@@ -1,0 +1,28 @@
+img, label, h2, h5 {
+    margin-left: 20px;
+}
+
+img {
+    height: 20em;
+    width: 20em;
+    border:5px solid rgb(154, 188, 168);
+}
+
+label {
+    display: block;
+    font-family: 'Dosis';
+    color: rgb(62, 97, 80);
+}
+
+.result {
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-bottom: 0px;
+}
+
+h5 {
+    margin-top: 5px;
+}

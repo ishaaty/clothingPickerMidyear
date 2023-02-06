@@ -4,17 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Results</title>
+    <title>Results!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/results.css">
 </head>
 <body>
-    <h1>Clothing Selector</h1>
-    <h2>We suggest</h2>
+    <h1>Clothing Picker</h1>
+    <h2>We suggest...</h2>
+    <h5>(Click the images to order!)</h5>
     <% for (let i = 0; i < displayItems.length; i++){ %>
-        <a href="<%= displayItems[i].link %>">
-            <img src="/imgs/<%= displayItems[i].img_name%>">
-        </a>
-        <label>$<%= displayItems[i].price_val %></label>
+        <div class="result">
+            <a href="<%= displayItems[i].link %>">
+                <img src="/imgs/<%= displayItems[i].img_name%>">
+            </a>
+            <label>Price: $<%= displayItems[i].price_val %></label>
+        </div>
     <% } %>
 </body>
 </html>
