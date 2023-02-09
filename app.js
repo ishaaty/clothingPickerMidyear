@@ -9,6 +9,7 @@ const aesthetics = ["Indie", "Cottagecore", "Grunge", "Monochromatic", "Dark-Aca
 const clothingTypes = ["Tshirt", "LongSleeves", "Hoodie", "Dress", "Jeans", "Sweatpants"];
 const colors = ["Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "Grey", "White", "Black", "Brown"];
 
+
 // more stuff to set up server
 app.set( "views",  __dirname + "/views");
 app.set( "view engine", "ejs" );
@@ -111,7 +112,7 @@ app.post("/survey/result", (req, res)=>{
                 if (error)
                     res.status(500).send(error); //Internal Server Error
                 else
-                    res.render("result", {displayItems : results});
+                    res.render("vrielleResult", {displayItems : results});
             });
         } else {
             console.log(results);
