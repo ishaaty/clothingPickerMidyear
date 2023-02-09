@@ -89,14 +89,17 @@ app.post("/survey/result", (req, res)=>{
                     + ` and ix.type_id = ct.type_id and ` + typesQuery 
                     + ` and ix.max_price = prices.price_id and prices.price_val <= ` + selectedPrice 
                     + ` and ix.img_id = images.img_id and ix.link_id = links.link_id
-                    order by img_name
+                    order by price_val
                     `
 
     let vrielle_query = `
-                        select img_name, link, price_val from items_xref as ix, images, links, colors, aesthetics, clothing_type as ct, prices
-                        where where (ix.color1_id = colors.color_id or ix.color2_id = colors.color_id or ix.color3_id = colors.color_id) 
-                        and colors.color_id = "Purple"
-                        order by img_name
+                        select distinct img_name, link, price_val from items_xref as ix, images, links, colors, aesthetics, clothing_type as ct, prices
+                        where (ix.color1_id = colors.color_id or ix.color2_id = colors.color_id or ix.color3_id = colors.color_id) 
+                        and colors.color_name = "Purple"
+                        and ix.img_id = images.img_id
+                        and ix.link_id = links.link_id
+                        and ix.max_price = prices.price_id
+                        order by price_val
                         `
 
     // execution of main_query
@@ -104,7 +107,12 @@ app.post("/survey/result", (req, res)=>{
         if (error)
             res.status(500).send(error); //Internal Server Error
         else if (results.length == 0){
-            res.send("Vrielle exception!");
+            db.execute(vrielle_query, (error, results) => {
+                if (error)
+                    res.status(500).send(error); //Internal Server Error
+                else
+                    res.render("result", {displayItems : results});
+            });
         } else {
             console.log(results);
             res.render("result", {displayItems : results});
