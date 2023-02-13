@@ -29,7 +29,16 @@ p {
     padding: 4px;
 }
 
-.question, p, button, h2 {
+.question, p, button, h2, h5 {
     justify-content: center;
     margin-left: 40px;
+}
+
+h2 {
+    margin-bottom: 2px;
+}
+
+h5 {
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
