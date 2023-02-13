@@ -5,8 +5,8 @@ const port = 8080;
 const logger = require("morgan");
 const db = require('./public/db/db_connection');
 const bp = require('body-parser');
-const aesthetics = ["Indie", "Cottagecore", "Grunge", "Monochromatic", "Dark-Academia", "Light-Academia"];
-const clothingTypes = ["Tshirt", "LongSleeves", "Hoodie", "Dress", "Jeans", "Sweatpants"];
+const aesthetics = ["Indie", "Cottagecore", "Grunge", "Monochromatic", "DarkAcademia", "LightAcademia"];
+const clothingTypes = ["Tshirt", "LongSleeves", "Hoodie", "Dress", "Jeans", "Pants"];
 const colors = ["Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "Grey", "White", "Black", "Brown"];
 
 
@@ -41,7 +41,7 @@ app.post("/survey/result", (req, res)=>{
 
     // Get selected clothing types
     let selectedClothes = [];
-    const clothingObj = [req.body.Tshirt, req.body.LongSleeves, req.body.Hoodie, req.body.Dress, req.body.Jeans, req.body.Sweatpants];
+    const clothingObj = [req.body.Tshirt, req.body.LongSleeves, req.body.Hoodie, req.body.Dress, req.body.Jeans, req.body.Pants];
     for (let i = 0; i < clothingObj.length; i++) {
         if (clothingObj[i] != undefined) {
             selectedClothes.push(clothingTypes[i]);
