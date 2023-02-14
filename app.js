@@ -1,9 +1,12 @@
 //set up the server
 const express = require( "express" );
 const app = express();
-const port = 8080;
+const port = process.env.PORT || 8080;
 const logger = require("morgan");
-const db = require('./public/db/db_connection');
+const helmet = require("helmet");
+app.use(helmet());
+
+const db = require('./public/db/db_pool');
 const bp = require('body-parser');
 const aesthetics = ["Indie", "Cottagecore", "Grunge", "Monochromatic", "DarkAcademia", "LightAcademia"];
 const clothingTypes = ["Tshirt", "LongSleeves", "Hoodie", "Dress", "Jeans", "Pants"];
