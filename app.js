@@ -1,10 +1,11 @@
 //set up the server
 const express = require( "express" );
-const port = 8080;
+const port = process.env.PORT || 8080;
 const app = express();
 const logger = require("morgan");
-const db = require('./public/db/db_connection');
+const db = require('./public/db/db_pool');
 
+const helmet = require("helmet");
 const bp = require('body-parser');
 const aesthetics = ["Indie", "Cottagecore", "Grunge", "Monochromatic", "DarkAcademia", "LightAcademia"];
 const clothingTypes = ["Tshirt", "LongSleeves", "Hoodie", "Dress", "Jeans", "Pants"];
@@ -19,6 +20,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(bp.json());
 app.use(bp.urlencoded({ extended: true }));
 app.use(express.urlencoded({encoded: false}));
+app.use(helmet());
 
 // define a route for the default home page
 app.get( "/", ( req, res ) => {
