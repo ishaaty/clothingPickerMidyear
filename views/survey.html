@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clothing Picker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/survey.css">
+</head>
+<body>
+    <h1>Clothing Picker</h1>
+    <h2>Survey Questions:</h2>
+    <p>What is your aesthetic?</p>
+    <!-- <form method="post"> -->
+    <div class="question">
+        <input type="checkbox" name="Indie" id="q1">Indie</input>
+        <input type="checkbox" name="Cottagecore" id="q1">Cottagecore</input>
+        <input type="checkbox" name="Grunge" id="q1">Grunge</input>
+        <input type="checkbox" name="Monochromatic" id="q1">Monochromatic</input>
+        <input type="checkbox" name="Dark-Academia" id="q1">Dark-Academia</input>
+        <input type="checkbox" name="Light-Academia" id="q1">Light-Academia</input>
+    </div>
+    <p>What clothing type are you looking for?</p>
+    <div class="question">
+        <input type="checkbox" name="T-shirt" id="q2">T-shirt</input>
+        <input type="checkbox" name="Long-sleeve-shirt" id="q2">Long-Sleeve Shirt</input>
+        <input type="checkbox" name="Hoodie" id="q2">Hoodie</input>
+        <input type="checkbox" name="Dress" id="q2">Dress</input>
+        <input type="checkbox" name="Jeans" id="q2">Jeans</input>
+        <input type="checkbox" name="Pants" id="q2">Pants</input>
+    </div>
+    <p>What colors of clothing do you wear?</p>
+    <div class="question">
+        <!-- red, orange, yellow, green, blue, purple, pink, grey, white, black-->
+        <input type="checkbox" name="Red" id="q3">Red</input>
+        <input type="checkbox" name="Orange" id="q3">Orange</input>
+        <input type="checkbox" name="Yellow" id="q3">Yellow</input>
+        <input type="checkbox" name="Green" id="q3">Green</input>
+        <input type="checkbox" name="Blue" id="q3">Blue</input>
+        <input type="checkbox" name="Purple" id="q3">Purple</input>
+        <input type="checkbox" name="Pink" id="q3">Pink</input>
+        <input type="checkbox" name="Grey" id="q3">Grey</input>
+        <input type="checkbox" name="White" id="q3">White</input>
+        <input type="checkbox" name="Black" id="q3">Black</input>
+        <input type="checkbox" name="Brown" id="q3">Brown</input>
+    </div>
+    <p>What is the most you would want to spend on an item?</p>
+    <div class="question">
+        <input type="radio" name="q4" id="10">$10</input>
+        <input type="radio" name="q4" id="20">$20</input>
+        <input type="radio" name="q4" id="30">$30</input>
+        <input type="radio" name="q4" id="50">$50</input>
+        <input type="radio" name="q4" id="100">$100</input>
+        <input type="radio" name="q4" id="150">$150</input>
+    </div>
+    <button id="results" onclick="location.href='/survey/result'">Display Results</button>
+    <!-- <button id="results" type="submit">Display Results</button> -->
+    <!-- </form> -->
+    <script src="../getSuggestion.js"></script>
+    <script src="../public/db/db_init.js"></script>
+</body>
+</html>
